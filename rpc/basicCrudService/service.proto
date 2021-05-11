@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package basicCrudService;
+option go_package = "rpc/basicCrudService";
+
+// Haberdasher service makes hats for clients.
+service basicCrudService {
+  // MakeHat produces a hat of mysterious, randomly-selected color!
+  rpc AddItem(Item) returns (ResponseMsg);
+  rpc GetItems(NullVal) returns (ResponseMsg);
+  rpc UpdateItem (Item) returns (ResponseMsg);
+  rpc DeleteItem (Item) returns (ResponseMsg);
+}
+
+// Size of a Hat, in inches.
+message ResponseMsg {
+  string response = 1; // must be > 0
+}
+
+// A Hat is a piece of headwear made by a Haberdasher.
+message Item {
+  string title = 1; // anything but "invisible"
+  string body = 2; // i.e. "bowler"
+}
+
+message NullVal{
+
+}
+
+message Items {
+  repeated Item items = 1;
+}
